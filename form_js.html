@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      padding: 20px;
+    }
+    form {
+      background: #fff;
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input, select { width: 100%; padding: 8px; margin-top: 5px; }
+    .error { color: red; font-size: 14px; margin: 10px 0; }
+    button { margin-top: 15px; padding: 10px; width: 100%; background: #007bff; color: white; border: none; border-radius: 5px; }
+    button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+
+  <h2>Registration & Payment</h2>
+  <form id="myForm">
+    <div class="error" id="errorMsg"></div>
+
+    <label>First Name:</label>
+    <input type="text" name="firstName" required>
+
+    <label>Last Name:</label>
+    <input type="text" name="lastName" required>
+
+    <label>Email:</label>
+    <input type="email" name="email">
+
+    <label>Password:</label>
+    <input type="password" name="password" required>
+
+    <label>Zip:</label>
+    <input type="text" name="zip" required>
+
+    <label>Card number:</label>
+    <input type="text" name="cardNumber" required>
+
+    <label>Expiration (MM/YY):</label>
+    <input type="text" name="expiration" required>
+
+    <label>CVV:</label>
+    <input type="text" name="cvv" required>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById("myForm").onsubmit = function(e) {
+      let err = "";
+      const f = this;
+
+      if (f.email.value && !f.email.value.includes("@")) {
+        err = "Email format is invalid.";
+      } else if (f.cardNumber.value.length !== 16) {
+        err = "Card number must be 16 digits.";
+      } else if (f.cvv.value.length !== 3) {
+        err = "CVV must be 3 digits.";
+      }
+
+      if (err) {
+        document.getElementById("errorMsg").textContent = err;
+        e.preventDefault();
+      } else {
+        alert("Form submitted successfully!");
+      }
+    };
+  </script>
+
+</body>
+</html>

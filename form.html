@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Web Page</title>
+</head>
+<body>
+
+  <h2>Dynamic Web Page</h2>
+
+  <input type="text" id="itemInput" placeholder="Enter items (comma separated)">
+  <button onclick="addItems()">추가</button>
+  <button onclick="clearList()">삭제</button>
+
+  <ul id="itemList"></ul>
+
+  <script>
+    function addItems() {
+      const input = document.getElementById("itemInput");
+      const list = document.getElementById("itemList");
+      const items = input.value.split(",");  // 쉼표로 구분
+
+      items.forEach(item => {
+        const trimmed = item.trim();
+        if (trimmed) {  
+          const li = document.createElement("li");
+          li.textContent = trimmed;
+          list.appendChild(li);
+        }
+      });
+
+      input.value = "";
+    }
+
+    function clearList() {
+      document.getElementById("itemList").innerHTML = "";
+    }
+  </script>
+
+</body>
+</html>
